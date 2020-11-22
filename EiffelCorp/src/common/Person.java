@@ -1,5 +1,5 @@
 package common;
-public class Person {
+public class Person implements IPersonObserver{
 	
 	private String name;
 	private int ID;
