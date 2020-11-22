@@ -12,4 +12,5 @@ public interface IGarageObservable extends Remote{
 	public List<ICar> lookBrand(String brand) throws RemoteException;
 	public List<ICar> lookAvailable() throws RemoteException;
 	public IRentCar rent(IPersonObserver person, ICar car, int amountDays) throws RemoteException;
+	public void returnCar(IRentCar rent, String notes) throws RemoteException;
 }

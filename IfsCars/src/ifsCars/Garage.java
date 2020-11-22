@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.List;
 
 import common.ICar;
 import common.IGarageObservable;
@@ -20,6 +19,7 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 	public Garage() throws RemoteException {
 		super();
 		this.garage = new ArrayList<ICar>();
+		this.historyOfRents = new ArrayList<IRentCar>();
 	}
 
 	@Override
@@ -69,7 +69,6 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 	@Override
 	public IRentCar rent(IPersonObserver person, ICar car, int amountDays) throws RemoteException {
 		IRentCar rent = new RentCar(person, car, amountDays);
-		System.out.println("rent is " + rent.toString());
 		if (car.getAvailable() == false) {
 			waitingList.add(person);
 		} else {
@@ -81,6 +80,17 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 		}
 		return null;
 	}
-
-
+	
+	@Override
+	public void returnCar(IRentCar rent, String notes) throws RemoteException{
+		this.historyOfRents.remove(rent);
+		this.notifyObserver(rent.getCar()); //develop method
+		rent.getCar().setAvailable(true);
+		rent.getCar().getNotes().add(notes);
+	}
+	
+	public void notifyObserver(ICar car) throws RemoteException{
+		waitingList.remove(0);
+		
+	}
 }

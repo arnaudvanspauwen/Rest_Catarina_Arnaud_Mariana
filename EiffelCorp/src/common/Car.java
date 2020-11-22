@@ -1,53 +1,75 @@
 package common;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.ICar;
 
-public class Car extends UnicastRemoteObject implements ICar {
+public class Car implements ICar {
 	
 	private int id;
 	private String brand;
 	private Boolean available;
 	private double pricePerDay;
+	private List<String> notes;
 		
-	public Car(int id, String brand, Boolean available, double pricePerDay) throws RemoteException{
+	public Car(int id, String brand, Boolean available, double pricePerDay) {
 		this.id = id;
 		this.brand = brand;
 		this.available = available;
 		this.pricePerDay = pricePerDay;
+		this.notes = new ArrayList<String>();
 	}
 	
-	public int getId() throws RemoteException{
+	@Override
+	public int getId(){
 		return id;
 	}
 	
-	public void setId(int id) throws RemoteException{
+	@Override
+	public void setId(int id){
 		this.id = id;
 	}
 	
-	public String getBrand() throws RemoteException{
+	@Override
+	public String getBrand(){
 		return brand;
 	}
 	
-	public void setBrand(String brand) throws RemoteException{
+	@Override
+	public void setBrand(String brand){
 		this.brand = brand;
 	}
 	
-	public Boolean getAvailable() throws RemoteException{
+	@Override
+	public Boolean getAvailable(){
 		return available;
 	}
 	
-	public void setAvailable(Boolean available) throws RemoteException{
+	@Override
+	public void setAvailable(Boolean available){
 		this.available = available;
 	}
 	
-	public double getPricePerDay() throws RemoteException {
+	@Override
+	public double getPricePerDay(){
 		return pricePerDay;
 	}
 	
-	public void setPricePerDay(double pricePerDay) throws RemoteException {
+	@Override
+	public void setPricePerDay(double pricePerDay){
 		this.pricePerDay = pricePerDay;
+	}
+
+	@Override
+	public List<String> getNotes() {
+		return notes;
+	}
+	
+	@Override
+	public void setNotes(List<String> notes) {
+		this.notes = notes;
 	}
 
 	@Override

@@ -1,17 +1,23 @@
 package common;
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
-public interface ICar extends Remote {
-	public void setId(int id) throws RemoteException;
-	public int getId() throws RemoteException;
+public interface ICar extends Serializable {
+	public void setId(int id);
+	public int getId();
 	
-	public void setBrand(String brand) throws RemoteException;
-	public String getBrand() throws RemoteException;
+	public void setBrand(String brand);
+	public String getBrand();
 	
-	public void setAvailable(Boolean available) throws RemoteException;
-	public Boolean getAvailable() throws RemoteException;
+	public void setAvailable(Boolean available);
+	public Boolean getAvailable();
 	
-	public void setPricePerDay(double pricePerDay) throws RemoteException;
-	public double getPricePerDay() throws RemoteException;
+	public void setPricePerDay(double pricePerDay);
+	public double getPricePerDay();
+	
+	public List<String> getNotes();	
+	public void setNotes(List<String> notes);
+
 }
