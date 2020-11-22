@@ -13,8 +13,8 @@ public class Client {
 
 	public static void main(String[] args) throws MalformedURLException, RemoteException, NotBoundException {
 		IGarageObservable garage = (IGarageObservable) Naming.lookup("garage");
-		garage.add(1, "Citroen", true);
-		garage.add(2, "Citroen", false);
+		garage.add(1, "Citroen", true, 2);
+		garage.add(2, "Citroen", false, 3);
 		System.out.println(garage.toString());
 		List<ICar> list = garage.lookAvailable();
 		System.out.println(list.toString());

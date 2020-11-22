@@ -12,4 +12,6 @@ public interface ICar extends Remote {
 	public void setAvailable(Boolean available) throws RemoteException;
 	public Boolean getAvailable() throws RemoteException;
 	
+	public void setPricePerDay(double pricePerDay) throws RemoteException;
+	public double getPricePerDay() throws RemoteException;
 }

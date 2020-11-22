@@ -18,8 +18,8 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 	}
 
 	@Override
-	public void add(int id, String brand, Boolean available) throws RemoteException {
-		ICar car = new Car(id, brand, available);
+	public void add(int id, String brand, Boolean available, double pricePerDay) throws RemoteException {
+		ICar car = new Car(id, brand, available, pricePerDay);
 		garage.add(car);
 		System.out.println("one car added: " + car);
 
@@ -32,7 +32,6 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 				garage.remove(car);
 			}
 		}
-
 	}
 
 	@Override
@@ -57,5 +56,7 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 		System.out.println("cars available" + carsList);
 		return carsList;
 	}
+	
+	
 
 }

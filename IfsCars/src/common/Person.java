@@ -35,4 +35,9 @@ public class Person {
 	public void setEmployee(boolean isEmployee) {
 		this.isEmployee = isEmployee;
 	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", ID=" + ID + ", isEmployee=" + isEmployee + "]";
+	}	
 }
