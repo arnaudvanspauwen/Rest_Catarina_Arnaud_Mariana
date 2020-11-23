@@ -5,11 +5,14 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ICar extends Serializable {
-	public void setId(int id);
-	public int getId();
+	public void setLicencePlate(String licencePlate);
+	public String getLicencePlate();
 	
 	public void setBrand(String brand);
 	public String getBrand();
+	
+	public String getModel();
+	public void setModel(String model);
 	
 	public void setAvailable(Boolean available);
 	public Boolean getAvailable();

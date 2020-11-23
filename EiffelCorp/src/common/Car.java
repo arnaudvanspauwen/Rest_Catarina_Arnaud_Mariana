@@ -8,29 +8,32 @@ import common.ICar;
 
 public class Car implements ICar {
 	
-	private int id;
+	private String licencePlate;
 	private String brand;
+	private String model;
 	private Boolean available;
 	private double pricePerDay;
 	private List<String> notes;
 		
-	public Car(int id, String brand, Boolean available, double pricePerDay) {
-		this.id = id;
+	public Car(String licencePlate, String brand, String model, Boolean available, double pricePerDay) {
+		this.licencePlate = licencePlate;
 		this.brand = brand;
+		this.model = model;
 		this.available = available;
 		this.pricePerDay = pricePerDay;
 		this.notes = new ArrayList<String>();
 	}
 	
 	@Override
-	public int getId(){
-		return id;
+	public String getLicencePlate(){
+		return licencePlate;
 	}
 	
 	@Override
-	public void setId(int id){
-		this.id = id;
+	public void setLicencePlate(String licencePlate){
+		this.licencePlate = licencePlate;
 	}
+	
 	
 	@Override
 	public String getBrand(){
@@ -40,6 +43,16 @@ public class Car implements ICar {
 	@Override
 	public void setBrand(String brand){
 		this.brand = brand;
+	}
+	
+	@Override
+	public String getModel(){
+		return model;
+	}
+	
+	@Override
+	public void setModel(String model){
+		this.model = model;
 	}
 	
 	@Override
@@ -74,6 +87,32 @@ public class Car implements ICar {
 
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", brand=" + brand + ", available=" + available + "]";
+		return "Car [licencePlate=" + licencePlate + ", brand=" + brand + ", model=" + model + ", available=" + available + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((licencePlate == null) ? 0 : licencePlate.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		if (licencePlate == null) {
+			if (other.licencePlate != null)
+				return false;
+		} else if (!licencePlate.equals(other.licencePlate))
+			return false;
+		return true;
+	}
+	
 }

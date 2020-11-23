@@ -31,13 +31,20 @@ public class Client {
 		
 		IGarageObservable garage = (IGarageObservable) Naming.lookup("garage");
 		IPersonObserver person = new Person("Mariana", 123, true);
-		ICar car = new Car(1, "Citroen", true, 2);
-		garage.add(1, "Citroen", true, 2);
-		garage.add(2, "Citroen", false, 3);
+		IPersonObserver jos = new Person("Jos", 124, true);
+		IPersonObserver fons = new Person("Fons", 125, true);
+		ICar citroen1 = new Car("CK-923-EJ", "Citroen", "Picasso", true, 2);
+		ICar citroen2 = new Car("IK-911-AB", "Citroen", "Picasso", true, 2);
+		garage.add(citroen1);
+		garage.add(citroen2);
 		System.out.println(garage.toString());
 		List<ICar> list = garage.lookAvailable();
 		System.out.println(list.toString());
-		garage.rent(person, car, 6);
+		garage.rent(person, citroen1, 6);
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
+		garage.rent(jos, citroen1, 3);
+		garage.rent(fons, citroen1, 6);
+
 		
 	}
 

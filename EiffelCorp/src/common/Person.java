@@ -38,6 +38,6 @@ public class Person implements IPersonObserver{
 
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", ID=" + ID + ", isEmployee=" + isEmployee + "]";
+		return name + ", ID=" + ID + ", isEmployee=" + isEmployee + "]";
 	}	
 }
