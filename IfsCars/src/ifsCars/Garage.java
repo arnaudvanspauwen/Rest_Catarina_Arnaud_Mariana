@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -99,7 +98,7 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 			garage.get(garage.indexOf(car)).setAvailable(false);
 			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + "is not available anymore");
 			System.out.println("\n");
-			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " is being rented by " + person.getName());
+			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " is being rented by " + person.getName() + " at the following price: " + rent.getRentPrice());
 			System.out.println("\n");
 			System.out.println("****************************************************");
 			historyOfRents.add(rent);

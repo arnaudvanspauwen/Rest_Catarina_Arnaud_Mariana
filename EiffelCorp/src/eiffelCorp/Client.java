@@ -32,7 +32,7 @@ public class Client {
 		
 		IGarageObservable garage = (IGarageObservable) Naming.lookup("garage");
 		
-		IPersonObserver mariana = new Person("Mariana", 123, true);
+		IPersonObserver mariana = new Person("Mariana", 123, false);
 		IPersonObserver jos = new Person("Jos", 124, true);
 		IPersonObserver fons = new Person("Fons", 125, true);
 		
@@ -60,12 +60,7 @@ public class Client {
 		garage.returnCar(rentMariana, "It was OK");
 		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
 		garage.returnCar(rentFos, "no good");
-		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
-
-
-
-
-		
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());	
 	}
 
 }

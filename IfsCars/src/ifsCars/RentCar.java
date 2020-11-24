@@ -1,5 +1,6 @@
 package ifsCars;
 
+import java.math.BigDecimal;
 import java.rmi.RemoteException;
 
 import common.ICar;
@@ -7,18 +8,18 @@ import common.IPersonObserver;
 import common.IRentCar;
 
 public class RentCar implements IRentCar{
-	
+
 	private IPersonObserver person;
 	private ICar car;
 	private int amountDays;
 	private double rentPrice;
-	
+
 	public RentCar(IPersonObserver person, ICar car, int amountDays) throws RemoteException {
 		super();
 		this.person = person;
 		this.car = car;
 		this.amountDays = amountDays;
-		this.rentPrice = amountDays*car.getPricePerDay();
+		this.setRentPrice();
 	}
 
 	@Override
@@ -57,8 +58,12 @@ public class RentCar implements IRentCar{
 	}
 
 	@Override
-	public void setRentPrice(double rentPrice) {
-		this.rentPrice = rentPrice;
+	public void setRentPrice() {
+		if (this.person.isEmployee()) {
+			this.rentPrice = Math.round((amountDays* car.getPricePerDay()*0.8) *100.00) / 100.0;
+		} else {
+			this.rentPrice = amountDays * car.getPricePerDay();
+		}
 	}
 
 	@Override
