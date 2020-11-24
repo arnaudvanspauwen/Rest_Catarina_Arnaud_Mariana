@@ -11,6 +11,7 @@ public class Car implements ICar {
 	private String brand;
 	private String model;
 	private Boolean available;
+	private Boolean forSale;
 	private double pricePerDay;
 	private List<String> notes;
 	private List<CarCondition> carConditionEnum;
@@ -23,6 +24,7 @@ public class Car implements ICar {
 		this.pricePerDay = pricePerDay;
 		this.notes = new ArrayList<String>();
 		this.carConditionEnum = new ArrayList<CarCondition>();
+		this.forSale = false;
 	}
 	
 	@Override
@@ -66,6 +68,17 @@ public class Car implements ICar {
 		this.available = available;
 	}
 	
+	
+	@Override
+	public Boolean getForSale() {
+		return forSale;
+	}
+
+	@Override
+	public void setForSale(Boolean forSale) {
+		this.forSale = forSale;
+	}
+
 	@Override
 	public double getPricePerDay(){
 		return pricePerDay;

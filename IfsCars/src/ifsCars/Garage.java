@@ -97,6 +97,7 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 			System.out.println("\n");
 			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " its available");
 			garage.get(garage.indexOf(car)).setAvailable(false);
+			garage.get(garage.indexOf(car)).setForSale(true);
 			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + "is not available anymore");
 			System.out.println("\n");
 			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " is being rented by " + person.getName() + " at the following price: " + rent.getRentPrice());

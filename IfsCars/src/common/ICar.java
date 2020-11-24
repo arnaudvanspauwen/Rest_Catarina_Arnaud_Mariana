@@ -15,6 +15,9 @@ public interface ICar extends Serializable {
 	public void setAvailable(Boolean available);
 	public Boolean getAvailable();
 	
+	public Boolean getForSale();
+	public void setForSale(Boolean forSale);
+	
 	public void setPricePerDay(double pricePerDay);
 	public double getPricePerDay();
 	
