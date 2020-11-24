@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import common.CarCondition;
 import common.ICar;
 import common.IGarageObservable;
 import common.IPersonObserver;
@@ -107,13 +108,13 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 	}
 
 	@Override
-	public void returnCar(IRentCar rent, String notes) throws RemoteException{
+	public void returnCar(IRentCar rent, String notes, CarCondition carEnum) throws RemoteException{
 		System.out.println("history of rents before: " + historyOfRents.toString());
 		this.historyOfRents.remove(rent);
 		System.out.println("history of rents after: " + historyOfRents.toString());
 		garage.get(garage.indexOf(rent.getCar())).setAvailable(true);
-		rent.getCar().getNotes().add(notes);
 		garage.get(garage.indexOf(rent.getCar())).getNotes().add(notes);
+		garage.get(garage.indexOf(rent.getCar())).getCarConditionEnum().add(carEnum);
 		if(waitingList.containsKey(garage.get(garage.indexOf(rent.getCar()))))
 			this.notifyObserver(garage.get(garage.indexOf(rent.getCar()))); 
 

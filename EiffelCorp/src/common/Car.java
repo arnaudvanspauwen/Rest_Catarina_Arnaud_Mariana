@@ -1,9 +1,8 @@
 package common;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.CarCondition;
 import common.ICar;
 
 public class Car implements ICar {
@@ -14,6 +13,7 @@ public class Car implements ICar {
 	private Boolean available;
 	private double pricePerDay;
 	private List<String> notes;
+	private List<CarCondition> carConditionEnum;
 		
 	public Car(String licencePlate, String brand, String model, Boolean available, double pricePerDay) {
 		this.licencePlate = licencePlate;
@@ -22,6 +22,7 @@ public class Car implements ICar {
 		this.available = available;
 		this.pricePerDay = pricePerDay;
 		this.notes = new ArrayList<String>();
+		this.carConditionEnum = new ArrayList<CarCondition>();
 	}
 	
 	@Override
@@ -83,6 +84,16 @@ public class Car implements ICar {
 	@Override
 	public void setNotes(List<String> notes) {
 		this.notes = notes;
+	}
+
+	@Override
+	public List<CarCondition> getCarConditionEnum() {
+		return this.carConditionEnum;
+	}
+
+	@Override
+	public void setCarConditionEnum(List<CarCondition> carConditionEnum) {
+		this.carConditionEnum = carConditionEnum;
 	}
 
 	@Override

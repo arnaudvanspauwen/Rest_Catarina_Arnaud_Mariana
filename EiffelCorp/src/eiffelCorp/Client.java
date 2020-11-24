@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.Car;
+import common.CarCondition;
 import common.ICar;
 import common.IGarageObservable;
 import common.IPersonObserver;
@@ -56,10 +57,10 @@ public class Client {
 		IRentCar rentFos = garage.rent(fons, citroen1, 6);
 		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
 		
-		garage.returnCar(rentJos, "Muy Bueno");
-		garage.returnCar(rentMariana, "It was OK");
+		garage.returnCar(rentJos, "Muy Bueno", CarCondition.GOOD);
+		garage.returnCar(rentMariana, "It was OK", CarCondition.OK);
 		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
-		garage.returnCar(rentFos, "no good");
+		garage.returnCar(rentFos, "no good", CarCondition.BAD);
 		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());	
 	}
 

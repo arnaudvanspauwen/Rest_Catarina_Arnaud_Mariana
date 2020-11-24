@@ -1,7 +1,5 @@
 package common;
 import java.io.Serializable;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ICar extends Serializable {
@@ -23,7 +21,8 @@ public interface ICar extends Serializable {
 	public List<String> getNotes();	
 	public void setNotes(List<String> notes);
 	
-	public int hashCode();
-	public boolean equals(Object obj);
+	public List<CarCondition> getCarConditionEnum();
+	public void setCarConditionEnum(List<CarCondition> carConditionEnum);
 
+	
 }
