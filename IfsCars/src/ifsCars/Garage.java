@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,23 +76,32 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 			if (!waitingList.containsKey(garage.get(garage.indexOf(car)))) {
 				waitingList.put(garage.get(garage.indexOf(car)), new ArrayList<IRentCar>());
 				waitingList.get(garage.get(garage.indexOf(car))).add(rent);
-				System.out.println(person + "is waiting for " + garage.get(garage.indexOf(car)));
+				System.out.println("******************this when we put people on the waiting list 1st**********************************");
+				System.out.println("\n");
+				System.out.println(person.getName() + " is waiting for " + garage.get(garage.indexOf(car)).getLicencePlate());
+				System.out.println("\n");
+				System.out.println("****************************************************");
+
 			} else {
-				System.out.println(person + "is waiting for " + garage.get(garage.indexOf(car)) + " else");
+				System.out.println("******************this when we put people on the waiting list after 1st**********************************");
+				System.out.println("\n");
+				System.out.println(person.getName() + " is waiting for " + garage.get(garage.indexOf(car)).getLicencePlate());
 				waitingList.get(garage.get(garage.indexOf(car))).add(rent);
+				System.out.println("\n");
+				System.out.println("****************************************************");
 			}
 			System.out.println("\n");
 			return null;
 		} else {
-			System.out.println("the " + garage.get(garage.indexOf(car)) + " its available");
-			System.out.println("entering for " + garage.get(garage.indexOf(car)).equals(car));
-			System.out.println("availability " + garage.get(garage.indexOf(car)).getAvailable());
+			System.out.println("******************this is the rent**********************************");
+			System.out.println("\n");
+			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " its available");
 			garage.get(garage.indexOf(car)).setAvailable(false);
-			System.out.println("the " + garage.get(garage.indexOf(car)) + "is not available anymore");
-			System.out.println("--------------------------------------------");
+			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + "is not available anymore");
 			System.out.println("\n");
-			System.out.println("the " + garage.get(garage.indexOf(car)) + " is being rented by " + person);
+			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " is being rented by " + person.getName());
 			System.out.println("\n");
+			System.out.println("****************************************************");
 			historyOfRents.add(rent);
 			return rent;
 		}
@@ -100,14 +110,21 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 	@Override
 	public void returnCar(IRentCar rent, String notes) throws RemoteException{
 		this.historyOfRents.remove(rent);
-		this.notifyObserver(rent.getCar()); //develop method
-		rent.getCar().setAvailable(true);
+		garage.get(garage.indexOf(rent.getCar())).setAvailable(true);
 		rent.getCar().getNotes().add(notes);
+		garage.get(garage.indexOf(rent.getCar())).getNotes().add(notes);
+		this.notifyObserver(garage.get(garage.indexOf(rent.getCar()))); 
 	}
 
+	@Override
 	public void notifyObserver(ICar car) throws RemoteException{
-		waitingList.remove(0);
+		List<IRentCar> rentCars = waitingList.get(car);
+		if (!rentCars.isEmpty()) {
+			this.rent(rentCars.get(0).getPerson(), rentCars.get(0).getCar(), rentCars.get(0).getAmountDays());
 
+		}
+		rentCars.remove(0);
+		//put for sell later!!!!!!!! setForSale()
 	}
 
 

@@ -14,6 +14,7 @@ import common.Car;
 import common.ICar;
 import common.IGarageObservable;
 import common.IPersonObserver;
+import common.IRentCar;
 import common.Person;
 
 public class Client {
@@ -30,20 +31,30 @@ public class Client {
 		System.setSecurityManager(new RMISecurityManager());
 		
 		IGarageObservable garage = (IGarageObservable) Naming.lookup("garage");
-		IPersonObserver person = new Person("Mariana", 123, true);
+		
+		IPersonObserver mariana = new Person("Mariana", 123, true);
 		IPersonObserver jos = new Person("Jos", 124, true);
 		IPersonObserver fons = new Person("Fons", 125, true);
+		
 		ICar citroen1 = new Car("CK-923-EJ", "Citroen", "Picasso", true, 2);
 		ICar citroen2 = new Car("IK-911-AB", "Citroen", "Picasso", true, 2);
+		
 		garage.add(citroen1);
 		garage.add(citroen2);
+		
 		System.out.println(garage.toString());
 		List<ICar> list = garage.lookAvailable();
 		System.out.println(list.toString());
-		garage.rent(person, citroen1, 6);
+		
+		IRentCar rentMariana = garage.rent(mariana, citroen1, 6);
+		IRentCar rentJos = garage.rent(jos, citroen1, 3);
+		IRentCar rentFos = garage.rent(fons, citroen1, 6);
+		
 		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
-		garage.rent(jos, citroen1, 3);
-		garage.rent(fons, citroen1, 6);
+		
+		garage.returnCar(rentMariana, "It was OK");
+		//garage.returnCar(rentJos, "Muy Bueno");
+
 
 		
 	}

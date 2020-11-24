@@ -22,5 +22,8 @@ public interface ICar extends Serializable {
 	
 	public List<String> getNotes();	
 	public void setNotes(List<String> notes);
+	
+	public int hashCode();
+	public boolean equals(Object obj);
 
 }

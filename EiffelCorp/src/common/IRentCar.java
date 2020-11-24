@@ -12,5 +12,7 @@ public interface IRentCar extends Serializable{
 	public void setAmountDays(int amountDays);
 	public void setRentPrice(double rentPrice);
 	public IPersonObserver getPerson();
+	public int hashCode();
+	public boolean equals(Object obj);
 	
 }

@@ -65,4 +65,29 @@ public class RentCar implements IRentCar{
 	public String toString() {
 		return "Rent is" + person + car + amountDays + rentPrice;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((car == null) ? 0 : car.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RentCar other = (RentCar) obj;
+		if (car == null) {
+			if (other.car != null)
+				return false;
+		} else if (!car.equals(other.car))
+			return false;
+		return true;
+	}
 }
