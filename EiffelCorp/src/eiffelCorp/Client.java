@@ -42,18 +42,27 @@ public class Client {
 		garage.add(citroen1);
 		garage.add(citroen2);
 		
-		System.out.println(garage.toString());
-		List<ICar> list = garage.lookAvailable();
-		System.out.println(list.toString());
-		
-		IRentCar rentMariana = garage.rent(mariana, citroen1, 6);
-		IRentCar rentJos = garage.rent(jos, citroen1, 3);
-		IRentCar rentFos = garage.rent(fons, citroen1, 6);
+//		System.out.println(garage.toString());
+//		List<ICar> list = garage.lookAvailable();
+//		System.out.println(list.toString());
 		
 		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
+		IRentCar rentMariana = garage.rent(mariana, citroen1, 6);
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
 		
+		IRentCar rentJos = garage.rent(jos, citroen2, 3);
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen2)).getAvailable());
+		IRentCar rentFos = garage.rent(fons, citroen1, 6);
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
+		
+		garage.returnCar(rentJos, "Muy Bueno");
 		garage.returnCar(rentMariana, "It was OK");
-		//garage.returnCar(rentJos, "Muy Bueno");
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
+		garage.returnCar(rentFos, "no good");
+		System.out.println(garage.getGarage().get(garage.getGarage().indexOf(citroen1)).getAvailable());
+
+
 
 
 		
