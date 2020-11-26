@@ -9,6 +9,7 @@ import javax.xml.rpc.ServiceException;
 
 import bank.BankService;
 import bank.BankServiceServiceLocator;
+import common.IBasket;
 import common.ICar;
 import common.IGarageObservable;
 import common.IGarageSeller;
@@ -30,7 +31,17 @@ public class GarageSeller implements IGarageSeller{
 		}
 	}
 	
-	
+	@Override
+	public void purchaseCar(IBasket basket, String rib, String currency) throws RemoteException {
+		boolean payment = this.bank.payment(rib, basket.basketPrice(), currency);
+		if(payment) {
+			for(ICar car : basket.getCarsInBasket()) {
+				garage.del(car.getLicencePlate());
+			}
+			System.out.println("Congratulations! Purchase completed!");
+		}
+		System.out.println("Transaction canceled...");
+	}
 	
 	
 
