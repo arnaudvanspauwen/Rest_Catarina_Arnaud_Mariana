@@ -13,15 +13,17 @@ public class Car implements ICar {
 	private Boolean available;
 	private Boolean forSale;
 	private double pricePerDay;
+	private static double PRICESALE;
 	private List<String> notes;
 	private List<CarCondition> carConditionEnum;
 		
-	public Car(String licencePlate, String brand, String model, Boolean available, double pricePerDay) {
+	public Car(String licencePlate, String brand, String model, Boolean available, double pricePerDay, double priceSale) {
 		this.licencePlate = licencePlate;
 		this.brand = brand;
 		this.model = model;
 		this.available = available;
 		this.pricePerDay = pricePerDay;
+		this.PRICESALE = priceSale;
 		this.notes = new ArrayList<String>();
 		this.carConditionEnum = new ArrayList<CarCondition>();
 		this.forSale = false;
@@ -36,7 +38,6 @@ public class Car implements ICar {
 	public void setLicencePlate(String licencePlate){
 		this.licencePlate = licencePlate;
 	}
-	
 	
 	@Override
 	public String getBrand(){
@@ -78,6 +79,11 @@ public class Car implements ICar {
 	public void setForSale(Boolean forSale) {
 		this.forSale = forSale;
 	}
+	
+	@Override
+	public double getPRICESALE() {
+		return PRICESALE;
+	}
 
 	@Override
 	public double getPricePerDay(){
@@ -111,7 +117,7 @@ public class Car implements ICar {
 
 	@Override
 	public String toString() {
-		return "Car [licencePlate=" + licencePlate + ", brand=" + brand + ", model=" + model + ", available=" + available + "]";
+		return "Car [licencePlate=" + licencePlate + ", brand=" + brand + ", model=" + model + ", available for Rent=" + available + ", available for Sale=" + forSale + ", price for Sale=" + PRICESALE +"]";
 	}
 
 	@Override

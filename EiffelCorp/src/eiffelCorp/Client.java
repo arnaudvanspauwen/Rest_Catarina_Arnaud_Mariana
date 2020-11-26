@@ -37,8 +37,8 @@ public class Client {
 		IPersonObserver jos = new Person("Jos", 124, true);
 		IPersonObserver fons = new Person("Fons", 125, true);
 		
-		ICar citroen1 = new Car("CK-923-EJ", "Citroen", "Picasso", true, 2);
-		ICar citroen2 = new Car("IK-911-AB", "Citroen", "Picasso", true, 2);
+		ICar citroen1 = new Car("CK-923-EJ", "Citroen", "Picasso", true, 2, 2000);
+		ICar citroen2 = new Car("IK-911-AB", "Citroen", "Picasso", true, 2, 2000);
 		
 		garage.add(citroen1);
 		garage.add(citroen2);

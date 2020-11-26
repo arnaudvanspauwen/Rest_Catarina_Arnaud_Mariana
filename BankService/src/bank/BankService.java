@@ -21,6 +21,7 @@ public class BankService implements IBankService{
 		this.bank = new ArrayList<IBankAccount>();
 	}
 
+	@Override
 	public boolean payment(String rib, double price, String currency) {
 		if(!currency.equals("EUR")) {
 			try {
