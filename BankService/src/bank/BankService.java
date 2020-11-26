@@ -32,8 +32,14 @@ public class BankService implements IBankService{
 				e.printStackTrace();
 			}
 		}
+		for(IBankAccount bankAccount : bank) {
+			if(bankAccount.getRib().equals(rib) && bankAccount.getBalance() > price) {
+				bankAccount.setBalance(bankAccount.getBalance() - price);
+				return true;
+			}
+		}
 
-		return true;
+		return false;
 	}
 
 
