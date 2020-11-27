@@ -13,15 +13,16 @@ public class Car implements ICar {
 	private Boolean available;
 	private Boolean forSale;
 	private double pricePerDay;
-	private static double PRICESALE;
+	private double PRICESALE;
 	private List<String> notes;
 	private List<CarCondition> carConditionEnum;
 		
-	public Car(String licencePlate, String brand, String model, Boolean available, double pricePerDay, double priceSale) {
+	public Car(String licencePlate, String brand, String model, Boolean available, Boolean forSale, double pricePerDay, double priceSale) {
 		this.licencePlate = licencePlate;
 		this.brand = brand;
 		this.model = model;
 		this.available = available;
+		this.forSale = forSale;
 		this.pricePerDay = pricePerDay;
 		this.PRICESALE = priceSale;
 		this.notes = new ArrayList<String>();

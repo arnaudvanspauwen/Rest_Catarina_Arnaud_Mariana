@@ -13,7 +13,7 @@ public class Car implements ICar {
 	private Boolean available;
 	private Boolean forSale;
 	private double pricePerDay;
-	private static double PRICESALE;
+	private double PRICESALE;
 	private List<String> notes;
 	private List<CarCondition> carConditionEnum;
 		
@@ -32,7 +32,7 @@ public class Car implements ICar {
 	
 	@Override
 	public String getLicencePlate(){
-		return this.licencePlate;
+		return licencePlate;
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class Car implements ICar {
 	
 	@Override
 	public String getBrand(){
-		return this.brand;
+		return brand;
 	}
 	
 	@Override
@@ -62,7 +62,7 @@ public class Car implements ICar {
 	
 	@Override
 	public Boolean getAvailable(){
-		return this.available;
+		return available;
 	}
 	
 	@Override
@@ -73,7 +73,7 @@ public class Car implements ICar {
 	
 	@Override
 	public Boolean getForSale() {
-		return this.forSale;
+		return forSale;
 	}
 
 	@Override

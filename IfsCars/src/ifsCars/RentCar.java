@@ -68,7 +68,7 @@ public class RentCar implements IRentCar{
 
 	@Override
 	public String toString() {
-		return "Rent is" + person + car + amountDays + rentPrice;
+		return "Rent: " + person.getName() + " with the car: " + car.getLicencePlate() + " available for sale: " + car.getForSale() + " for " + amountDays + " days " + "with rent price of: " + rentPrice;
 	}
 
 	@Override
