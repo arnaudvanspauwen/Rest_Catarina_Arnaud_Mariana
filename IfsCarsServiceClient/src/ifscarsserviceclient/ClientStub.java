@@ -3,16 +3,34 @@ package ifscarsserviceclient;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import javax.security.auth.login.AccountException;
 import javax.xml.rpc.ServiceException;
 
+import common.Car;
+import common.IBankAccount;
 import common.ICar;
 import ifscarsservice.GarageSeller;
 import ifscarsservice.GarageSellerServiceLocator;
 
 public class ClientStub {
 	
-//	private GarageSeller garageSeller;
+	private GarageSeller garageSeller;
+	private Basket basket;
 	
+	public ClientStub() throws ServiceException {
+		this.garageSeller = (GarageSeller) new GarageSellerServiceLocator().getGarageSeller();
+		this.basket = new Basket();
+	}
+	
+	
+	public GarageSeller getGarageSeller() {
+		return garageSeller;
+	}
+
+	public Basket getBasket() {
+		return basket;
+	}
+
 	public String constructStringFromList(List<ICar> garage) {
 		StringBuilder builder = new StringBuilder();
 		for(ICar car : garage) {
@@ -35,10 +53,24 @@ public class ClientStub {
 	}
 	
 	public static void main(String[] args) throws ServiceException, RemoteException {
-		GarageSeller garageSeller = (GarageSeller) new GarageSellerServiceLocator().getGarageSeller();
-		System.out.println("heyy");
+//		Basket basket = new Basket();
+//		constructStringFromList.
+		
+//		GarageSeller garageSeller = (GarageSeller) new GarageSellerServiceLocator().getGarageSeller();
+		ClientStub client = new ClientStub();
+		GarageSeller garageSeller = client.getGarageSeller();
+		
+		System.out.println("trying to check price and availability");
 		garageSeller.consultCarPricesAndAvailability();
+		System.out.println("put in the basket");
+		client.getBasket().addToBasket(new Car("CK-923-EJ", "Citroen", "Picasso", true, false, 2, 100.0));
+		System.out.println("purchase");
+		garageSeller.purchaseCar(client.constructStringFromList(client.getBasket().getCarsInBasket()), "987", "EUR", client.getBasket().basketPrice());
+		
+		
 		System.out.println("ciaoo");
+		
+		
 		
 	}
 
