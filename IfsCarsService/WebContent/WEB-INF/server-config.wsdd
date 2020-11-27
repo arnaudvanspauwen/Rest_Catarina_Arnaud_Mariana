@@ -3,12 +3,12 @@
   <ns1:parameter name="sendMultiRefs" value="true"/>
   <ns1:parameter name="disablePrettyXML" value="true"/>
   <ns1:parameter name="adminPassword" value="admin"/>
-  <ns1:parameter name="attachments.Directory" value="/Users/marianavaz/Desktop/Universidade/Erasmus/Fran&#xE7;a/workspaceWebRest/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/BankService/WEB-INF/attachments"/>
+  <ns1:parameter name="attachments.Directory" value="/Users/marianavaz/Desktop/Universidade/Erasmus/Fran&#xE7;a/workspaceWebRest/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/IfsCarsService/WEB-INF/attachments"/>
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -22,21 +22,6 @@
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
- <ns1:service name="BankService" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="payment" qname="ns1:payment" returnQName="ns1:paymentReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://bank" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:rib" type="xsd:string"/>
-   <ns2:parameter qname="ns1:price" type="xsd:double"/>
-   <ns2:parameter qname="ns1:currency" type="xsd:string"/>
-  </ns2:operation>
-  <ns1:parameter name="allowedMethods" value="payment"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="wsdlPortType" value="BankService"/>
-  <ns1:parameter name="className" value="bank.BankService"/>
-  <ns1:parameter name="wsdlServicePort" value="BankService"/>
-  <ns1:parameter name="schemaQualified" value="http://bank"/>
-  <ns1:parameter name="wsdlTargetNamespace" value="http://bank"/>
-  <ns1:parameter name="wsdlServiceElement" value="BankServiceService"/>
- </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>
   <ns1:parameter name="enableRemoteAdmin" value="false"/>
@@ -46,6 +31,23 @@
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="GarageSeller" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="consultCarPricesAndAvailability" qname="ns1:consultCarPricesAndAvailability" soapAction="" xmlns:ns1="http://ifscarsservice" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:operation name="purchaseCar" qname="ns2:purchaseCar" soapAction="" xmlns:ns2="http://ifscarsservice">
+   <ns1:parameter qname="ns2:basket" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:rib" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:currency" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:price" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="consultCarPricesAndAvailability purchaseCar"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="GarageSeller"/>
+  <ns1:parameter name="className" value="ifscarsservice.GarageSeller"/>
+  <ns1:parameter name="wsdlServicePort" value="GarageSeller"/>
+  <ns1:parameter name="schemaQualified" value="http://ifscarsservice"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://ifscarsservice"/>
+  <ns1:parameter name="wsdlServiceElement" value="GarageSellerService"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

@@ -1,0 +1,34 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GarageSellerService WSDL service -->
+
+  <service name="GarageSeller" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ifscarsservice"/>
+      <parameter name="wsdlServiceElement" value="GarageSellerService"/>
+      <parameter name="schemaQualified" value="http://ifscarsservice"/>
+      <parameter name="wsdlServicePort" value="GarageSeller"/>
+      <parameter name="className" value="ifscarsservice.GarageSellerSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="GarageSeller"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="consultCarPricesAndAvailability" qname="operNS:consultCarPricesAndAvailability" xmlns:operNS="http://ifscarsservice" soapAction="" >
+      </operation>
+      <operation name="purchaseCar" qname="operNS:purchaseCar" xmlns:operNS="http://ifscarsservice" soapAction="" >
+        <parameter qname="pns:basket" xmlns:pns="http://ifscarsservice" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:rib" xmlns:pns="http://ifscarsservice" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:currency" xmlns:pns="http://ifscarsservice" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:price" xmlns:pns="http://ifscarsservice" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="consultCarPricesAndAvailability purchaseCar"/>
+
+  </service>
+</deployment>

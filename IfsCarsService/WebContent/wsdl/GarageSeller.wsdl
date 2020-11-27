@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ifscarsservice" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ifscarsservice" xmlns:intf="http://ifscarsservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://ifscarsservice" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="consultCarPricesAndAvailability">
+    <complexType/>
+   </element>
+   <element name="consultCarPricesAndAvailabilityResponse">
+    <complexType/>
+   </element>
+   <element name="purchaseCar">
+    <complexType>
+     <sequence>
+      <element name="basket" type="xsd:string"/>
+      <element name="rib" type="xsd:string"/>
+      <element name="currency" type="xsd:string"/>
+      <element name="price" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="purchaseCarResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="purchaseCarResponse">
+
+      <wsdl:part element="impl:purchaseCarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultCarPricesAndAvailabilityResponse">
+
+      <wsdl:part element="impl:consultCarPricesAndAvailabilityResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="purchaseCarRequest">
+
+      <wsdl:part element="impl:purchaseCar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultCarPricesAndAvailabilityRequest">
+
+      <wsdl:part element="impl:consultCarPricesAndAvailability" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GarageSeller">
+
+      <wsdl:operation name="consultCarPricesAndAvailability">
+
+         <wsdl:input message="impl:consultCarPricesAndAvailabilityRequest" name="consultCarPricesAndAvailabilityRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:consultCarPricesAndAvailabilityResponse" name="consultCarPricesAndAvailabilityResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="purchaseCar">
+
+         <wsdl:input message="impl:purchaseCarRequest" name="purchaseCarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:purchaseCarResponse" name="purchaseCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GarageSellerSoapBinding" type="impl:GarageSeller">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultCarPricesAndAvailability">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultCarPricesAndAvailabilityRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultCarPricesAndAvailabilityResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="purchaseCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="purchaseCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="purchaseCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GarageSellerService">
+
+      <wsdl:port binding="impl:GarageSellerSoapBinding" name="GarageSeller">
+
+         <wsdlsoap:address location="http://localhost:8080/IfsCarsService/services/GarageSeller"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

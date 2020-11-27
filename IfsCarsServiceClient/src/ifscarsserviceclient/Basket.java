@@ -16,11 +16,11 @@ public class Basket implements IBasket{
 
 	@Override
 	public List<ICar> getCarsInBasket() {
-		return carsInBasket;
+		return this.carsInBasket;
 	}
 
 	@Override
-	public void setCarsInBasket(List<ICar> carsInBasket) {
+	public void setCarsInBasket(ArrayList<ICar> carsInBasket) {
 		this.carsInBasket = carsInBasket;
 	}
 	
