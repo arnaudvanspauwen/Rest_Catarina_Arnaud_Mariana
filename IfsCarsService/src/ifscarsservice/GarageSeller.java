@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.xml.rpc.ServiceException;
 
+
 import bank.BankService;
 import bank.BankServiceServiceLocator;
 import common.Car;
@@ -30,6 +31,7 @@ public class GarageSeller implements IGarageSeller{
 
 	@Override
 	public void consultCarPricesAndAvailability() throws RemoteException {
+		System.out.println("Prices and Availability:");
 		for(ICar car : garage.getGarage()) {
 			System.out.println(car.toString());
 		}
@@ -45,7 +47,7 @@ public class GarageSeller implements IGarageSeller{
 			cars.add(car);
 		}
 		double amount = this.bank.changePriceCurrency(price, currency);
-		System.out.println("The price will be " + price + " " + currency );
+		System.out.println("The price will be " + amount + " " + currency );
 		boolean payment = this.bank.payment(rib, amount, currency);
 		if(payment) {
 			for(ICar car : cars) {

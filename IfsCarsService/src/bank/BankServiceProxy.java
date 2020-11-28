@@ -50,5 +50,11 @@ public class BankServiceProxy implements bank.BankService {
     return bankService.payment(rib, price, currency);
   }
   
+  public double changePriceCurrency(double price, java.lang.String currency) throws java.rmi.RemoteException{
+    if (bankService == null)
+      _initBankServiceProxy();
+    return bankService.changePriceCurrency(price, currency);
+  }
+  
   
 }

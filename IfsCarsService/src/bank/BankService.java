@@ -9,6 +9,5 @@ package bank;
 
 public interface BankService extends java.rmi.Remote {
     public boolean payment(java.lang.String rib, double price, java.lang.String currency) throws java.rmi.RemoteException;
-
-	public double changePriceCurrency(double price, java.lang.String currency) throws java.rmi.RemoteException;
+    public double changePriceCurrency(double price, java.lang.String currency) throws java.rmi.RemoteException;
 }

@@ -58,7 +58,7 @@ public class ClientStub {
 		
 		garageSeller.consultCarPricesAndAvailability();
 		client.getBasket().addToBasket(new Car("CK-923-EJ", "Citroen", "Picasso", true, false, 2, 100.0));
-		garageSeller.purchaseCar(client.constructStringFromList(client.getBasket().getCarsInBasket()), "987", "RUB", client.getBasket().basketPrice());
+		garageSeller.purchaseCar(client.constructStringFromList(client.getBasket().getCarsInBasket()), "987", "GBP", client.getBasket().basketPrice());
 	}
 
 }

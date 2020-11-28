@@ -34,22 +34,25 @@ public class Client {
 		IGarageObservable garage = (IGarageObservable) Naming.lookup("garage");
 		
 		IPersonObserver mariana = new Person("Mariana", 123, false);
-		IPersonObserver jos = new Person("Jos", 124, true);
-		IPersonObserver fons = new Person("Fons", 125, true);
+		IPersonObserver catarina = new Person("Catarina", 124, true);
+		IPersonObserver arnaud = new Person("Arnaud", 125, true);
 		
-		ICar citroen1 = new Car("CK-923-EJ", "Citroen", "Picasso", true, false, 2, 2000.0);
-		ICar citroen2 = new Car("IK-911-AB", "Citroen", "Picasso", true, false, 2, 2000.0);
+		ICar citroen = new Car("CK-923-EJ", "Citroen", "Picasso", true, false, 2, 2000.0);
+		ICar bmw = new Car("IK-911-AB", "BMW", "i8", true, false, 2, 1000.0);
+		ICar mercedes = new Car("IK-911-AB", "Mercedes", "E220", true, false, 2, 1500.0);
 		
-		garage.add(citroen1);
-		garage.add(citroen2);
 		
-		IRentCar rentMariana = garage.rent(mariana, citroen1, 6);
-		IRentCar rentJos = garage.rent(jos, citroen2, 3);
-		IRentCar rentFos = garage.rent(fons, citroen1, 6);
+		garage.add(citroen);
+		garage.add(bmw);
+		garage.add(mercedes);
 		
-		garage.returnCar(rentJos, "Muy Bueno", CarCondition.GOOD);
+		IRentCar rentMariana = garage.rent(mariana, citroen, 6);
+		IRentCar rentCatarina = garage.rent(catarina, bmw, 3);
+		IRentCar rentArnaud = garage.rent(arnaud, citroen, 6);
+		
+		garage.returnCar(rentCatarina, "Muy Bueno", CarCondition.GOOD);
 		garage.returnCar(rentMariana, "It was OK", CarCondition.OK);
-		garage.returnCar(rentFos, "no good", CarCondition.BAD);
+		garage.returnCar(rentArnaud, "no good", CarCondition.BAD);
 	}
 
 }

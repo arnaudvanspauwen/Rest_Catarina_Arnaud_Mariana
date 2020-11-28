@@ -74,16 +74,22 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 			if (!waitingList.containsKey(garage.get(garage.indexOf(car)))) {
 				waitingList.put(garage.get(garage.indexOf(car)), new ArrayList<IRentCar>());
 				waitingList.get(garage.get(garage.indexOf(car))).add(rent);
-				System.out.println(person.getName() + " is waiting to rent: " + car.toString());
+				System.out.println(person.getName() + " is waiting to rent: ");
+				System.out.println(car.toString());
+				System.out.println("");
 			} else {
 				waitingList.get(garage.get(garage.indexOf(car))).add(rent);
-				System.out.println(person.getName() + " is waiting to rent: " + car.toString());
+				System.out.println(person.getName() + " is waiting to rent: ");
+				System.out.println(car.toString());
+				System.out.println("");
 			}
 		} else {
 			garage.get(garage.indexOf(car)).setAvailable(false);
 			garage.get(garage.indexOf(car)).setForSale(true);
 			historyOfRents.add(rent);
-			System.out.println(person.getName() + " rentend: " + car.toString());
+			System.out.println(person.getName() + " is renting: ");
+			System.out.println(car.toString());
+			System.out.println("");
 		}
 		return rent;
 	}
@@ -94,7 +100,9 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 		garage.get(garage.indexOf(rent.getCar())).setAvailable(true);
 		garage.get(garage.indexOf(rent.getCar())).getNotes().add(notes);
 		garage.get(garage.indexOf(rent.getCar())).getCarConditionEnum().add(carEnum);
-		System.out.println(rent.getPerson().getName() + " returned: " + rent.getCar().toString());
+		System.out.println(rent.getPerson().getName() + " returned: ");
+		System.out.println(rent.getCar().toString());
+		System.out.println("");
 		if(waitingList.containsKey(garage.get(garage.indexOf(rent.getCar()))))
 			this.notifyObserver(garage.get(garage.indexOf(rent.getCar()))); 
 	}
