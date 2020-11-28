@@ -18,10 +18,6 @@ public class BankService implements IBankService{
 	private List<IBankAccount> bank;
 
 	public BankService() {
-		this.bank = this.initializeAccounts();
-	}
-
-	public List<IBankAccount> initializeAccounts() {
 		List<IBankAccount> accounts = new ArrayList<IBankAccount>();
 		IBankAccount marianaAccount = new BankAccount("987", 1000);
 		IBankAccount catarinaAccount = new BankAccount("654", 3000);
@@ -31,15 +27,15 @@ public class BankService implements IBankService{
 		accounts.add(catarinaAccount);
 		accounts.add(arnaudAccount);
 		accounts.add(mahdiAccount);
-		return accounts;
+		this.bank = accounts;
 	}
-	
+
 	@Override
 	public boolean payment(String rib, double price, String currency) {
 		if(!currency.equals("EUR")) {
 			try {
 				CurrencyServerSoap currencyServerSoap = new CurrencyServerLocator().getCurrencyServerSoap();
-				price = (double) currencyServerSoap.convert("", currency, "EUR", price, false, "", CurncsrvReturnRate.curncsrvReturnRateNumber, "", "");
+				price = (double) currencyServerSoap.convert("", currency , "EUR", price, false, "", CurncsrvReturnRate.curncsrvReturnRateNumber, "", "");
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			} catch (RemoteException e) {
@@ -48,12 +44,28 @@ public class BankService implements IBankService{
 		}
 		for(IBankAccount bankAccount : bank) {
 			if(bankAccount.getRib().equals(rib) && bankAccount.getBalance() > price) {
+				System.out.println("balance before purchase is: " + bankAccount.getBalance());
+				System.out.println("price is: " + price);
 				bankAccount.setBalance(bankAccount.getBalance() - price);
+				System.out.println("balance after purchase is: " + bankAccount.getBalance());
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	@Override
+	public double changePriceCurrency(double price, String currency) {
+		try {
+			CurrencyServerSoap currencyServerSoap = new CurrencyServerLocator().getCurrencyServerSoap();
+			return (double) currencyServerSoap.convert("", currency , "EUR", price, false, "", CurncsrvReturnRate.curncsrvReturnRateNumber, "", "");
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 

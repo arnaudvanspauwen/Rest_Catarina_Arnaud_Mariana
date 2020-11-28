@@ -16,6 +16,7 @@ import common.IBasket;
 import common.ICar;
 import common.IGarageObservable;
 import common.IGarageSeller;
+import common.IBankService;
 
 public class GarageSeller implements IGarageSeller{
 
@@ -43,8 +44,9 @@ public class GarageSeller implements IGarageSeller{
 			ICar car = new Car(stringCar[0], stringCar[1], stringCar[2], Boolean.valueOf(stringCar[3]), Boolean.valueOf(stringCar[4]), Double.parseDouble(stringCar[5]), Double.parseDouble(stringCar[6]));
 			cars.add(car);
 		}
-
-		boolean payment = this.bank.payment(rib, price, currency);
+		double amount = this.bank.changePriceCurrency(price, currency);
+		System.out.println("The price will be " + price + " " + currency );
+		boolean payment = this.bank.payment(rib, amount, currency);
 		if(payment) {
 			for(ICar car : cars) {
 				garage.del(car.getLicencePlate());

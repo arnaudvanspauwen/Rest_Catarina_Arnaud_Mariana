@@ -25,7 +25,11 @@
         <parameter qname="pns:price" xmlns:pns="http://bank" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:currency" xmlns:pns="http://bank" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="payment"/>
+      <operation name="changePriceCurrency" qname="operNS:changePriceCurrency" xmlns:operNS="http://bank" returnQName="retNS:changePriceCurrencyReturn" xmlns:retNS="http://bank" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:price" xmlns:pns="http://bank" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:currency" xmlns:pns="http://bank" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="changePriceCurrency payment"/>
 
   </service>
 </deployment>

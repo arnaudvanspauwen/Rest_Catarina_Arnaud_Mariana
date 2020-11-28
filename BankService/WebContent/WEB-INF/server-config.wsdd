@@ -28,7 +28,11 @@
    <ns2:parameter qname="ns1:price" type="xsd:double"/>
    <ns2:parameter qname="ns1:currency" type="xsd:string"/>
   </ns2:operation>
-  <ns1:parameter name="allowedMethods" value="payment"/>
+  <ns1:operation name="changePriceCurrency" qname="ns2:changePriceCurrency" returnQName="ns2:changePriceCurrencyReturn" returnType="xsd:double" soapAction="" xmlns:ns2="http://bank" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:price" type="xsd:double"/>
+   <ns1:parameter qname="ns2:currency" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="changePriceCurrency payment"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="BankService"/>
   <ns1:parameter name="className" value="bank.BankService"/>

@@ -65,9 +65,7 @@ public class ClientStub {
 		System.out.println("put in the basket");
 		client.getBasket().addToBasket(new Car("CK-923-EJ", "Citroen", "Picasso", true, false, 2, 100.0));
 		System.out.println("purchase");
-		garageSeller.purchaseCar(client.constructStringFromList(client.getBasket().getCarsInBasket()), "987", "EUR", client.getBasket().basketPrice());
-		
-		
+		garageSeller.purchaseCar(client.constructStringFromList(client.getBasket().getCarsInBasket()), "987", "RUB", client.getBasket().basketPrice());
 		System.out.println("ciaoo");
 		
 		
