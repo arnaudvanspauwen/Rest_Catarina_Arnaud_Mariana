@@ -24,7 +24,6 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 		this.garage = new ArrayList<ICar>();
 		this.historyOfRents = new ArrayList<IRentCar>();
 		this.waitingList = new HashMap<ICar, List<IRentCar>>();
-
 	}
 
 	@Override
@@ -35,7 +34,6 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 	@Override
 	public void add(ICar car) throws RemoteException {
 		garage.add(car);
-		System.out.println("one car added: " + car);
 	}
 
 	@Override
@@ -66,7 +64,6 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 				carsList.add(car);
 			}
 		}
-		System.out.println("cars available" + carsList);
 		return carsList;
 	}
 
@@ -77,58 +74,36 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 			if (!waitingList.containsKey(garage.get(garage.indexOf(car)))) {
 				waitingList.put(garage.get(garage.indexOf(car)), new ArrayList<IRentCar>());
 				waitingList.get(garage.get(garage.indexOf(car))).add(rent);
-				System.out.println("******************this when we put people on the waiting list 1st**********************************");
-				System.out.println("\n");
-				System.out.println(person.getName() + " is waiting for " + garage.get(garage.indexOf(car)).getLicencePlate());
-				System.out.println("\n");
-				System.out.println("****************************************************");
-
+				System.out.println(person.getName() + " is waiting to rent: " + car.toString());
 			} else {
-				System.out.println("******************this when we put people on the waiting list after 1st**********************************");
-				System.out.println("\n");
-				System.out.println(person.getName() + " is waiting for " + garage.get(garage.indexOf(car)).getLicencePlate());
 				waitingList.get(garage.get(garage.indexOf(car))).add(rent);
-				System.out.println("\n");
-				System.out.println("****************************************************");
+				System.out.println(person.getName() + " is waiting to rent: " + car.toString());
 			}
-			System.out.println("\n");
 		} else {
-			System.out.println("******************this is the rent**********************************");
-			System.out.println("\n");
-			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " its available");
 			garage.get(garage.indexOf(car)).setAvailable(false);
 			garage.get(garage.indexOf(car)).setForSale(true);
-			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + "is not available anymore");
-			System.out.println("\n");
-			System.out.println("the " + garage.get(garage.indexOf(car)).getLicencePlate() + " is being rented by " + person.getName() + " at the following price: " + rent.getRentPrice());
-			System.out.println("\n");
-			System.out.println("****************************************************");
 			historyOfRents.add(rent);
+			System.out.println(person.getName() + " rentend: " + car.toString());
 		}
 		return rent;
 	}
 
 	@Override
 	public void returnCar(IRentCar rent, String notes, CarCondition carEnum) throws RemoteException{
-		System.out.println("history of rents before: " + historyOfRents.toString());
 		this.historyOfRents.remove(rent);
-		System.out.println("history of rents after: " + historyOfRents.toString());
 		garage.get(garage.indexOf(rent.getCar())).setAvailable(true);
 		garage.get(garage.indexOf(rent.getCar())).getNotes().add(notes);
 		garage.get(garage.indexOf(rent.getCar())).getCarConditionEnum().add(carEnum);
+		System.out.println(rent.getPerson().getName() + " returned: " + rent.getCar().toString());
 		if(waitingList.containsKey(garage.get(garage.indexOf(rent.getCar()))))
 			this.notifyObserver(garage.get(garage.indexOf(rent.getCar()))); 
-
 	}
 
 	@Override
 	public void notifyObserver(ICar car) throws RemoteException{
 		if (!waitingList.get(car).isEmpty()) {
 			this.rent(waitingList.get(car).get(0).getPerson(), waitingList.get(car).get(0).getCar(), waitingList.get(car).get(0).getAmountDays());
-			System.out.println("waiting list before removing 1 person: " + waitingList.get(car));
 			waitingList.get(car).remove(0);
-			System.out.println("waiting list after removing 1 person: " + waitingList.get(car));
 		}
-		//put for sell later!!!!!!!! setForSale()
 	}
 }

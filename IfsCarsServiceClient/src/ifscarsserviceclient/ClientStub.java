@@ -53,23 +53,12 @@ public class ClientStub {
 	}
 	
 	public static void main(String[] args) throws ServiceException, RemoteException {
-//		Basket basket = new Basket();
-//		constructStringFromList.
-		
-//		GarageSeller garageSeller = (GarageSeller) new GarageSellerServiceLocator().getGarageSeller();
 		ClientStub client = new ClientStub();
 		GarageSeller garageSeller = client.getGarageSeller();
 		
-		System.out.println("trying to check price and availability");
 		garageSeller.consultCarPricesAndAvailability();
-		System.out.println("put in the basket");
 		client.getBasket().addToBasket(new Car("CK-923-EJ", "Citroen", "Picasso", true, false, 2, 100.0));
-		System.out.println("purchase");
 		garageSeller.purchaseCar(client.constructStringFromList(client.getBasket().getCarsInBasket()), "987", "RUB", client.getBasket().basketPrice());
-		System.out.println("ciaoo");
-		
-		
-		
 	}
 
 }
