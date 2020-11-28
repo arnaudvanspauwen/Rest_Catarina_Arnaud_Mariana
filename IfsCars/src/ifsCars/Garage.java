@@ -102,6 +102,7 @@ public class Garage extends UnicastRemoteObject implements IGarageObservable {
 		garage.get(garage.indexOf(rent.getCar())).getCarConditionEnum().add(carEnum);
 		System.out.println(rent.getPerson().getName() + " returned: ");
 		System.out.println(rent.getCar().toString());
+		System.out.println("The total price was: " + rent.getRentPrice() + "€");
 		System.out.println("");
 		if(waitingList.containsKey(garage.get(garage.indexOf(rent.getCar()))))
 			this.notifyObserver(garage.get(garage.indexOf(rent.getCar()))); 

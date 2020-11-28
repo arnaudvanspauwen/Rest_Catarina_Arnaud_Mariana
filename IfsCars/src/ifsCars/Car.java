@@ -118,7 +118,7 @@ public class Car implements ICar {
 
 	@Override
 	public String toString() {
-		return "Car [licencePlate=" + licencePlate + ", brand=" + brand + ", model=" + model + ", available for Rent=" + available + ", available for Sale=" + forSale + ", price for Sale=" + PRICESALE +"]";
+		return "Car [licencePlate=" + licencePlate + ", brand=" + brand + ", model=" + model + ", available for Rent =" + available + ", available for Sale = " + forSale +", price per day (in euros) = " + pricePerDay + ", price for Sale (in euros) =" + PRICESALE + "]";
 	}
 
 	@Override
