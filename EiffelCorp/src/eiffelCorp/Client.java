@@ -20,7 +20,6 @@ import common.Person;
 
 public class Client {
 	
-//	private IGarageObservable garage;
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws MalformedURLException, RemoteException, NotBoundException {
